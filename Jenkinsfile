@@ -19,10 +19,11 @@ pipeline {
         stage('read version'){
             steps {
                 script {
-                    def packageJson = readJSON file: 'package.json'
-                    appVersion = packageJson.appVersion
-                    echo " app version is: $appVersion"
+                // Adjust path if package.json is in a subfolder
+                def pkg = readJSON file: 'package.json'
+                echo "app version is: ${pkg.version}"
                 }
+
             }
         }
 
